@@ -64,28 +64,47 @@ Fruits-360/
 └── top_errors.png            # 易混淆类别 Top-15 排行
 ```
 
-> 注：训练数据 `data/` 和最终模型 `best_model.pth` 因体积过大未纳入仓库，可通过 `train.py` 重新生成。
+> 模型权重（`best_model.pth`）已在仓库中，clone 即用，无需训练。
 
 ---
 
 ## 🚀 快速开始
 
-### 环境要求
-
-- Python 3.10+
-- PyTorch 2.0+ (CUDA 推荐)
-- 6GB+ GPU 显存（CPU 也可训练，但较慢）
-
-### 安装依赖
+### 仅使用 Web 识别（不需要数据集！）
 
 ```bash
-pip install torch torchvision flask rembg onnxruntime scikit-learn matplotlib seaborn pillow
+# 1. 克隆
+git clone https://github.com/TristanDure/Fruits-360-Recognition.git
+cd Fruits-360-Recognition
+
+# 2. 装依赖
+pip install -r requirements.txt
+
+# 3. 启动
+python app.py
 ```
 
-### 下载数据集
+浏览器打开 **http://localhost:5000**，上传图片 → 自动抠图 → 识别 → Top-5 结果。
 
-从 Kaggle 下载 [Fruits-360](https://www.kaggle.com/datasets/moltean/fruits) 数据集，解压到 `data/` 目录：
+> 模型权重已预置在仓库中，不需要下载数据集，不需要训练。上面三步即可跑起来。
 
+---
+
+### 训练模型（需要数据集）
+
+<details>
+<summary>点击展开训练步骤</summary>
+
+**环境要求**：Python 3.10+ / PyTorch 2.0+ / 6GB+ GPU 显存（CPU 也可但较慢）
+
+**1. 安装依赖**
+```bash
+pip install -r requirements.txt
+```
+
+**2. 下载数据集**
+
+从 [Kaggle](https://www.kaggle.com/datasets/moltean/fruits) 下载 Fruits-360，解压到 `data/` 目录：
 ```
 data/
 └── fruits-360_100x100/
@@ -94,24 +113,13 @@ data/
         └── Test/       # 45,724 张
 ```
 
-### 训练模型
-
+**3. 运行训练**
 ```bash
-# 从头训练（约 1.5-2 小时，RTX 4050）
-python train.py
-
-# 或从 Stage1 checkpoint 续训（约 1 小时）
-python train_resume.py
+python train.py          # 从头训练（约 1.5-2 小时）
+python train_resume.py   # 从 Stage1 续训（约 1 小时）
+python evaluate.py       # 生成混淆矩阵等评估图
 ```
-
-### 启动 Web 应用
-
-```bash
-python app.py
-# 访问 http://localhost:5000
-```
-
-上传图片 → 自动去背景 → 识别 → Top-5 结果展示。
+</details>
 
 ---
 
