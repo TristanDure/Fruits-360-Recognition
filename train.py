@@ -13,6 +13,8 @@ import matplotlib
 matplotlib.use('Agg')  # 非GUI模式
 import matplotlib.pyplot as plt
 import seaborn as sns
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei', 'SimHei']
+plt.rcParams['axes.unicode_minus'] = False
 import numpy as np
 from model import get_model, unfreeze_layers
 

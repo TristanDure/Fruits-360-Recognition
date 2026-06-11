@@ -298,6 +298,6 @@ add_para('第五，体会到了分析和表达的重要性。一个好的 AI 项
 add_para('本次项目为将来在人工智能方向的深入学习和研究打下了坚实的基础。掌握的知识和技能不仅限于水果识别这一个任务，迁移学习的方法论可以应用到任何图像分类场景，为研究生阶段的科研工作做好了准备。', indent=True)
 
 # ===== 保存 =====
-output_path = os.path.join(BASE, '水果智能识别系统_设计报告.docx')
+output_path = os.path.join(BASE, '水果智能识别系统_设计报告_v2.docx')
 doc.save(output_path)
 print(f'报告已保存: {output_path}')
