@@ -18,4 +18,6 @@ static/uploads/
 # IDE
 .vscode/
 .idea/
-~
+
+# Word 临时文件
+~$*
