@@ -1,0 +1,260 @@
+0: Almonds 1
+1: Apple 10
+2: Apple 11
+3: Apple 12
+4: Apple 13
+5: Apple 14
+6: Apple 17
+7: Apple 18
+8: Apple 19
+9: Apple 20
+10: Apple 21
+11: Apple 22
+12: Apple 23
+13: Apple 5
+14: Apple 6
+15: Apple 7
+16: Apple 8
+17: Apple 9
+18: Apple Braeburn 1
+19: Apple Crimson Snow 1
+20: Apple Golden 1
+21: Apple Golden 2
+22: Apple Golden 3
+23: Apple Granny Smith 1
+24: Apple Pink Lady 1
+25: Apple Red 1
+26: Apple Red 2
+27: Apple Red 3
+28: Apple Red Delicious 1
+29: Apple Red Yellow 1
+30: Apple Red Yellow 2
+31: Apricot 1
+32: Avocado 1
+33: Avocado 2
+34: Avocado Black 1
+35: Avocado Black 2
+36: Avocado Green 1
+37: Banana 1
+38: Banana 3
+39: Banana 4
+40: Banana Lady Finger 1
+41: Banana Red 1
+42: Bean pod 1
+43: Beetroot 1
+44: BlackBerry 4
+45: Blackberry 1
+46: Blackberry 2
+47: Blackberry 3
+48: Blackberry 5
+49: Blueberry 1
+50: Cabbage red 1
+51: Cabbage white 1
+52: Cactus fruit 1
+53: Cactus fruit green 1
+54: Cactus fruit red 1
+55: Caju seed 1
+56: Cantaloupe 1
+57: Cantaloupe 2
+58: Cantaloupe 3
+59: Carambola 1
+60: Carambola 2
+61: Carambola 3
+62: Carrot 1
+63: Cauliflower 1
+64: Celery 1
+65: Cherimoya 1
+66: Cherry 1
+67: Cherry 2
+68: Cherry 3
+69: Cherry 4
+70: Cherry 5
+71: Cherry Rainier 1
+72: Cherry Rainier 2
+73: Cherry Rainier 3
+74: Cherry Sour 1
+75: Cherry Wax 1
+76: Cherry Wax 2
+77: Cherry Wax Black 1
+78: Cherry Wax Red 1
+79: Cherry Wax Red 2
+80: Cherry Wax Red 3
+81: Cherry Wax Yellow 1
+82: Chestnut 1
+83: Clementine 1
+84: Cocos 1
+85: Corn 1
+86: Corn Husk 1
+87: Cucumber 1
+88: Cucumber 10
+89: Cucumber 11
+90: Cucumber 12
+91: Cucumber 13
+92: Cucumber 3
+93: Cucumber 4
+94: Cucumber 5
+95: Cucumber 6
+96: Cucumber 7
+97: Cucumber 8
+98: Cucumber 9
+99: Dates 1
+100: Dates 2
+101: Eggplant 1
+102: Eggplant long 1
+103: Fig 1
+104: Ginger 2
+105: Ginger Root 1
+106: Gooseberry 1
+107: Granadilla 1
+108: Grape 1
+109: Grape Blue 1
+110: Grape Pink 1
+111: Grape White 1
+112: Grape White 2
+113: Grape White 3
+114: Grape White 4
+115: Grape pink 2
+116: Grapefruit Pink 1
+117: Grapefruit White 1
+118: Guava 1
+119: Hazelnut 1
+120: Huckleberry 1
+121: Kaki 1
+122: Kiwi 1
+123: Kohlrabi 1
+124: Kumquats 1
+125: Lemon 1
+126: Lemon Meyer 1
+127: Limes 1
+128: Lychee 1
+129: Mandarine 1
+130: Mango 1
+131: Mango Red 1
+132: Mangostan 1
+133: Maracuja 1
+134: Melon Piel de Sapo 1
+135: Mulberry 1
+136: Nectarine 1
+137: Nectarine Flat 1
+138: Nectarine Flat 2
+139: Nut 1
+140: Nut 2
+141: Nut 3
+142: Nut 4
+143: Nut 5
+144: Nut Forest 1
+145: Nut Pecan 1
+146: Onion 2
+147: Onion Red 1
+148: Onion Red 2
+149: Onion Red 3
+150: Onion White 1
+151: Onion White 2
+152: Orange 1
+153: Orange 2
+154: Orange 3
+155: Orange peeled 1
+156: Papaya 1
+157: Papaya 2
+158: Passion Fruit 1
+159: Peach 1
+160: Peach 2
+161: Peach 3
+162: Peach 4
+163: Peach 5
+164: Peach 6
+165: Peach Flat 1
+166: Peanut shell 1x 1
+167: Pear 1
+168: Pear 10
+169: Pear 11
+170: Pear 12
+171: Pear 13
+172: Pear 14
+173: Pear 2
+174: Pear 3
+175: Pear 5
+176: Pear 6
+177: Pear 7
+178: Pear 8
+179: Pear 9
+180: Pear Abate 1
+181: Pear Forelle 1
+182: Pear Kaiser 1
+183: Pear Monster 1
+184: Pear Red 1
+185: Pear Stone 1
+186: Pear Williams 1
+187: Pepino 1
+188: Pepper 1
+189: Pepper 2
+190: Pepper Green 1
+191: Pepper Orange 1
+192: Pepper Orange 2
+193: Pepper Red 1
+194: Pepper Red 2
+195: Pepper Red 3
+196: Pepper Red 4
+197: Pepper Red 5
+198: Pepper Yellow 1
+199: Physalis 1
+200: Physalis with Husk 1
+201: Pineapple 1
+202: Pineapple Mini 1
+203: Pistachio 1
+204: Pitahaya Red 1
+205: Plum 1
+206: Plum 2
+207: Plum 3
+208: Plum 4
+209: Plum 5
+210: Pomegranate 1
+211: Pomelo Sweetie 1
+212: Potato Red 1
+213: Potato Red 2
+214: Potato Sweet 1
+215: Potato White 1
+216: Quince 1
+217: Quince 2
+218: Quince 3
+219: Quince 4
+220: Rambutan 1
+221: Raspberry 1
+222: Raspberry 2
+223: Raspberry 3
+224: Raspberry 4
+225: Raspberry 5
+226: Raspberry 6
+227: Redcurrant 1
+228: Salak 1
+229: Strawberry 1
+230: Strawberry 2
+231: Strawberry 3
+232: Strawberry Wedge 1
+233: Tamarillo 1
+234: Tangelo 1
+235: Tomato 1
+236: Tomato 10
+237: Tomato 11
+238: Tomato 2
+239: Tomato 3
+240: Tomato 4
+241: Tomato 5
+242: Tomato 7
+243: Tomato 8
+244: Tomato 9
+245: Tomato Cherry Maroon 1
+246: Tomato Cherry Orange 1
+247: Tomato Cherry Red 1
+248: Tomato Cherry Red 2
+249: Tomato Cherry Yellow 1
+250: Tomato Heart 1
+251: Tomato Maroon 1
+252: Tomato Maroon 2
+253: Tomato Yellow 1
+254: Walnut 1
+255: Watermelon 1
+256: Zucchini 1
+257: Zucchini Green 1
+258: Zucchini dark 1
+259: orange 4

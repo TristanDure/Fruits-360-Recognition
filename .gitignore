@@ -1,0 +1,21 @@
+# 数据（6GB，太大）
+data/
+
+# 模型权重（44MB each，可通过 train.py 重新生成）
+*.pth
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 上传的测试图片
+static/uploads/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+~

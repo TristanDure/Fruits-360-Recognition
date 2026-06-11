@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>🍎 水果智能识别系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+               min-height: 100vh; font-family: 'Microsoft YaHei', sans-serif;
+               display: flex; justify-content: center; align-items: center; }
+        .container { background: rgba(255,255,255,0.95); border-radius: 20px;
+                     padding: 40px; max-width: 600px; width: 90%;
+                     box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center; }
+        h1 { color: #e74c3c; margin-bottom: 10px; font-size: 28px; }
+        .subtitle { color: #666; margin-bottom: 30px; font-size: 14px; }
+        .upload-area { border: 3px dashed #ddd; border-radius: 15px; padding: 40px;
+                       margin-bottom: 20px; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { border-color: #e74c3c; background: #fff5f5; }
+        .upload-area img { max-width: 300px; max-height: 300px; display: none;
+                           border-radius: 10px; margin: 0 auto; }
+        .upload-text { color: #999; font-size: 16px; }
+        input[type="file"] { display: none; }
+        .btn { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white;
+               border: none; padding: 14px 40px; border-radius: 30px; font-size: 16px;
+               cursor: pointer; transition: all 0.3s; margin: 5px; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(231,76,60,0.4); }
+        .btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .result { margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 15px;
+                  display: none; }
+        .result .top1 { font-size: 24px; font-weight: bold; color: #e74c3c; margin: 10px 0; }
+        .result .confidence { font-size: 18px; color: #27ae60; }
+        .result .top-list { margin-top: 15px; text-align: left; }
+        .result .top-item { display: flex; justify-content: space-between; padding: 8px 15px;
+                            background: white; margin: 5px 0; border-radius: 8px;
+                            transition: all 0.2s; }
+        .result .top-item:hover { background: #fff5f5; }
+        .result .top-item .name { font-weight: 500; }
+        .result .top-item .prob { color: #e74c3c; font-weight: bold; }
+        .bar { height: 6px; background: #e74c3c; border-radius: 3px; margin-top: 3px; }
+        .spinner { display: none; width: 40px; height: 40px; border: 4px solid #f3f3f3;
+                   border-top: 4px solid #e74c3c; border-radius: 50%;
+                   animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🍎 水果智能识别系统</h1>
+    <p class="subtitle">基于 ResNet-18 迁移学习 · 131种水果蔬菜识别 · 准确率 95%+</p>
+
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+        <img id="preview" alt="预览">
+        <p class="upload-text" id="uploadText">📷 点击上传水果照片 或 拖拽到此处</p>
+    </div>
+    <input type="file" id="fileInput" accept="image/*">
+
+    <button class="btn" id="btnPredict" onclick="predict()" disabled>🔍 开始识别</button>
+    <button class="btn" id="btnClear" onclick="clearAll()" style="background: #95a5a6;">🔄 清除</button>
+
+    <div class="spinner" id="spinner"></div>
+
+    <div class="result" id="result">
+        <p style="color:#666;">识别结果</p>
+        <div class="top1" id="top1Name">—</div>
+        <div class="confidence" id="top1Conf">置信度: —</div>
+        <div class="top-list" id="topList"></div>
+    </div>
+</div>
+
+<script>
+    var selectedFile = null;
+
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        selectedFile = e.target.files[0];
+        if (selectedFile) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview').style.display = 'block';
+                document.getElementById('uploadText').style.display = 'none';
+            };
+            reader.readAsDataURL(selectedFile);
+            document.getElementById('btnPredict').disabled = false;
+        }
+    });
+
+    // 拖拽支持
+    var uploadArea = document.getElementById('uploadArea');
+    uploadArea.addEventListener('dragover', function(e) { e.preventDefault(); });
+    uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        var file = e.dataTransfer.files[0];
+        if (file) {
+            document.getElementById('fileInput').files = e.dataTransfer.files;
+            document.getElementById('fileInput').dispatchEvent(new Event('change'));
+        }
+    });
+
+    function predict() {
+        if (!selectedFile) return;
+
+        document.getElementById('btnPredict').disabled = true;
+        document.getElementById('spinner').style.display = 'block';
+        document.getElementById('result').style.display = 'none';
+
+        var formData = new FormData();
+        formData.append('image', selectedFile);
+
+        fetch('/predict', { method: 'POST', body: formData })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('spinner').style.display = 'none';
+                document.getElementById('result').style.display = 'block';
+
+                if (data.error) {
+                    document.getElementById('top1Name').textContent = data.error;
+                    return;
+                }
+
+                document.getElementById('top1Name').textContent = '🍎 ' + data.top1_name;
+                document.getElementById('top1Conf').textContent = '置信度: ' + data.top1_prob + '%';
+
+                var html = '<p style="color:#666;margin-bottom:10px;">Top-5 预测:</p>';
+                data.top5.forEach(function(item) {
+                    html += '<div class="top-item">' +
+                        '<span class="name">' + item.name + '</span>' +
+                        '<span class="prob">' + item.prob + '%</span>' +
+                        '</div><div class="bar" style="width:' + item.prob + '%;"></div>';
+                });
+                document.getElementById('topList').innerHTML = html;
+                document.getElementById('btnPredict').disabled = false;
+            })
+            .catch(err => {
+                document.getElementById('spinner').style.display = 'none';
+                alert('识别失败: ' + err);
+                document.getElementById('btnPredict').disabled = false;
+            });
+    }
+
+    function clearAll() {
+        selectedFile = null;
+        document.getElementById('fileInput').value = '';
+        document.getElementById('preview').style.display = 'none';
+        document.getElementById('uploadText').style.display = 'block';
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('btnPredict').disabled = true;
+    }
+</script>
+</body>
+</html>
