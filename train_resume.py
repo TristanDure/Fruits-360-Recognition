@@ -17,7 +17,7 @@ import numpy as np
 from model import get_model, unfreeze_layers
 
 # ===== 配置 =====
-DATA_DIR = r'E:\code\周记\人工智能\Fruits-360\data\fruits-360_100x100\fruits-360'
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data', 'fruits-360_100x100', 'fruits-360')
 BATCH_SIZE = 64
 NUM_CLASSES = 260
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

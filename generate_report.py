@@ -8,7 +8,7 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 import os
 
-BASE = r'E:\code\周记\人工智能\Fruits-360'
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 doc = Document()
 
