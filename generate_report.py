@@ -158,18 +158,20 @@ add_para('（6）Web 部署：Flask 后端加载模型 → 前端上传图片 �
 
 add_para('项目代码结构：', bold=True)
 code_structure = """Fruits-360/
-├── model.py          # 模型定义（ResNet-18 迁移学习）
-├── train.py          # 完整训练脚本（两阶段训练）
-├── train_resume.py   # 续训脚本（从 Stage1 checkpoint 继续）
-├── evaluate.py       # 模型评估（混淆矩阵 + 分类报告）
-├── app.py            # Flask Web 应用
+├── model.py                  # 模型定义（ResNet-18 迁移学习）
+├── train.py                  # 完整两阶段训练脚本
+├── train_resume.py           # 续训脚本（从 Stage1 checkpoint 继续）
+├── evaluate.py               # 模型评估（混淆矩阵 + 分类报告）
+├── app.py                    # Flask Web 应用（集成 rembg 抠图）
+├── generate_report.py        # 设计报告 .docx 生成脚本
+├── requirements.txt          # Python 依赖清单
 ├── templates/
-│   └── index.html    # 前端识别界面
-├── best_model.pth    # 训练好的模型权重（98.80%）
-├── class_names.txt   # 260 类水果名称
-├── training_curve.png      # 训练曲线图
-├── confusion_matrix.png    # 混淆矩阵
-└── top_errors.png          # 易混淆类别排行
+│   └── index.html            # 前端识别界面（拖拽上传 + Top-5 展示）
+├── ppt_figures/              # PPT 配图（训练曲线/混淆矩阵/对比实验等）
+├── docs/                     # 设计报告 .docx
+├── best_model.pth            # 训练好的模型权重（98.80%）
+├── best_model_stage1.pth     # Stage1 最优模型（85.64%）
+└── class_names.txt           # 260 类水果名称映射
 """
 p = doc.add_paragraph()
 run = p.add_run(code_structure)
@@ -212,7 +214,7 @@ doc.add_paragraph()
 add_para('第一阶段（冻结训练）：冻结 ResNet-18 所有的卷积层参数，只训练新替换的分类头（FC层）。使用 Adam 优化器，初始学习率 0.001，StepLR 调度器每 5 个 epoch 将学习率减半。经过 10 个 epoch 训练，验证集准确率达到 85.64%。第二阶段（微调）：基于第一阶段的最优模型，解冻 layer3 和 layer4 两个残差块，采用分层学习率（全连接层 5e-4 > layer4 1e-4 > layer3 5e-5）进行精细调优。使用 CosineAnnealingLR 调度器平滑降低学习率，训练 15 个 epoch。最终模型验证集准确率达到 98.80%。', indent=True)
 
 add_para('训练过程中的准确率和损失曲线如下图所示：', indent=True)
-add_image(os.path.join(BASE, 'training_curve.png'), width=Inches(5.5))
+add_image(os.path.join(BASE, 'ppt_figures/training_curve.png'), width=Inches(5.5))
 add_para('图1：训练过程 Loss 曲线和 Accuracy 曲线', bold=True)
 p = doc.paragraphs[-1]
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -226,12 +228,12 @@ add_para('• 加权平均 F1-score（Weighted Avg）：0.99', indent=True)
 add_para('• 宏平均 F1-score（Macro Avg）：0.98', indent=True)
 add_para('绝大多数类别的 F1-score 达到 1.00（完美识别），仅有少数外观极为相似的水果类别存在轻微混淆。这说明 ResNet-18 迁移学习在该数据集上取得了非常优秀的表现。', indent=True)
 
-add_image(os.path.join(BASE, 'confusion_matrix.png'), width=Inches(5.5))
+add_image(os.path.join(BASE, 'ppt_figures/confusion_matrix.png'), width=Inches(5.5))
 add_para('图2：混淆矩阵（最容易混淆的类别）', bold=True)
 p = doc.paragraphs[-1]
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-add_image(os.path.join(BASE, 'top_errors.png'), width=Inches(5.5))
+add_image(os.path.join(BASE, 'ppt_figures/top_errors.png'), width=Inches(5.5))
 add_para('图3：最容易混淆的类别对 Top-15', bold=True)
 p = doc.paragraphs[-1]
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -298,6 +300,6 @@ add_para('第五，体会到了分析和表达的重要性。一个好的 AI 项
 add_para('本次项目为将来在人工智能方向的深入学习和研究打下了坚实的基础。掌握的知识和技能不仅限于水果识别这一个任务，迁移学习的方法论可以应用到任何图像分类场景，为研究生阶段的科研工作做好了准备。', indent=True)
 
 # ===== 保存 =====
-output_path = os.path.join(BASE, '水果智能识别系统_设计报告_v2.docx')
+output_path = os.path.join(BASE, 'docs/水果智能识别系统_设计报告.docx')
 doc.save(output_path)
 print(f'报告已保存: {output_path}')

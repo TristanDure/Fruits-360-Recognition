@@ -17,7 +17,7 @@
 
 训练曲线：
 
-![训练曲线](training_curve.png)
+![训练曲线](ppt_figures/training_curve.png)
 
 ---
 
@@ -55,13 +55,22 @@ Fruits-360/
 ├── evaluate.py               # 模型评估（混淆矩阵 + 分类报告）
 ├── app.py                    # Flask Web 应用（集成 rembg 抠图）
 ├── generate_report.py        # 设计报告 .docx 生成脚本
+├── requirements.txt          # Python 依赖清单
 ├── templates/
 │   └── index.html            # 前端识别界面（拖拽上传 + Top-5 展示）
-├── best_model_stage1.pth     # Stage1 最优模型（85.64%）
-├── class_names.txt           # 260 类水果名称映射
-├── training_curve.png        # 训练 Loss + Accuracy 曲线
-├── confusion_matrix.png      # 混淆矩阵热力图
-└── top_errors.png            # 易混淆类别 Top-15 排行
+├── ppt_figures/              # PPT 配图
+│   ├── training_curve.png    # 训练 Loss + Accuracy 曲线
+│   ├── stage_progress.png    # 两阶段准确率跃升
+│   ├── confusion_matrix.png  # 混淆矩阵热力图
+│   ├── top_errors.png        # 易混淆类别 Top-15
+│   ├── class_distribution.png # 260 类准确率分布
+│   ├── accuracy_cliff.png    # 准确率断崖式下跌
+│   ├── comparison_ppt.png    # 抠图对比全景 (4×4)
+│   └── ablation_study.png    # 消融实验汇总
+├── docs/                     # 设计报告
+├── best_model.pth            # 最终模型权重 (98.80%, 44MB)
+├── best_model_stage1.pth     # Stage1 检查点 (85.64%)
+└── class_names.txt           # 260 类水果名称映射
 ```
 
 > 模型权重（`best_model.pth`）已在仓库中，clone 即用，无需训练。
@@ -132,9 +141,9 @@ python evaluate.py       # 生成混淆矩阵等评估图
 | 宏平均 F1 | 0.98 |
 | 测试集样本数 | 45,724 |
 
-![混淆矩阵](confusion_matrix.png)
+![混淆矩阵](ppt_figures/confusion_matrix.png)
 
-![易混淆类别](top_errors.png)
+![易混淆类别](ppt_figures/top_errors.png)
 
 ---
 
